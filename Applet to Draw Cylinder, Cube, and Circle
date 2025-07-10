@@ -1,0 +1,27 @@
+import java.applet.Applet; 
+import java.awt.Color; 
+import java.awt.Graphics; 
+
+public class DrawShapesApplet extends Applet {
+    public void paint(Graphics g) {
+        // Cylinder
+        g.setColor(Color.ORANGE);
+        g.drawOval(50, 60, 100, 50);       // Top ellipse
+        g.drawLine(50, 85, 50, 200);       // Left vertical
+        g.drawLine(150, 85, 150, 200);     // Right vertical
+        g.drawOval(50, 180, 100, 50);      // Bottom ellipse
+
+        // Cube
+        g.setColor(Color.CYAN);
+        g.drawRect(50, 275, 100, 100);      // Front face
+        g.drawLine(50, 275, 130, 230);      // Top left
+        g.drawLine(150, 275, 210, 240);     // Top right
+        g.drawLine(130, 230, 210, 240);     // Top back
+        g.drawLine(210, 240, 210, 340);     // Back right vertical
+        g.drawLine(150, 375, 210, 340);     // Bottom back
+
+        // Circle
+        g.setColor(Color.GREEN);
+        g.drawOval(50, 380, 100, 100);      // Circle
+    }
+}

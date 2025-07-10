@@ -1,0 +1,48 @@
+class Employee {
+    private String empName;
+    private String empID;
+    private double salary;
+
+    public Employee(String empName, String empID, double salary) {
+        this.empName = empName;
+        this.empID = empID;
+        this.salary = salary;
+    }
+
+    public String toString() {
+        return empName + " " + empID + " " + salary;
+    }
+
+    public double bonus() {
+        return 0.1 * this.salary;
+    }
+}
+
+class Manager extends Employee {
+    private String dop; // Date of Promotion
+
+    public Manager(String name, String id, double salary, String dop) {
+        super(name, id, salary);
+        this.dop = dop;
+    }
+
+    public String toString() {
+        return super.toString() + " " + dop;
+    }
+
+    public double bonus() {
+        return 2 * super.bonus();
+    }
+}
+
+public class InheritanceTest {
+    public static void main(String[] args) {
+        Employee obj1 = new Employee("Bharath", "6608", 45000);
+        System.out.println(obj1);
+        System.out.println(obj1.bonus());
+
+        Employee obj2 = new Manager("Saidulu", "6626", 50000, "05/02/2024");
+        System.out.println(obj2);
+        System.out.println(obj2.bonus());
+    }
+}

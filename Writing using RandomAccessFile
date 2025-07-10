@@ -1,0 +1,20 @@
+import java.io.*;
+
+public class RandWrite {
+    public static void main(String[] args) throws IOException {
+        // Create RandomAccessFile in read-write mode
+        RandomAccessFile file = new RandomAccessFile("D:\\nikhil.txt", "rw");
+
+        String data = "Nikhil is a chit chat boy";
+        byte[] arr = data.getBytes();
+
+        // Move the file pointer to position 22
+        file.seek(22);
+
+        // Write data at the specified position
+        file.write(arr);
+
+        System.out.println("Data written successfully.");
+        file.close();
+    }
+}

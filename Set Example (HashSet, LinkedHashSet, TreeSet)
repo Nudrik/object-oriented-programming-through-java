@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class SetExample {
+    public static void main(String[] args) {
+        // HashSet<String> obj = new HashSet<>();
+        // LinkedHashSet<String> obj = new LinkedHashSet<>();
+        TreeSet<String> obj = new TreeSet<>();
+
+        obj.add("Lasya");
+        obj.add("Chaithanya");
+        obj.add("Sravanthi");
+        obj.add("Naresh");
+        obj.add("Lasya");
+
+        System.out.println(obj);
+        System.out.println(obj.contains("Nikhil"));
+        System.out.println(obj.isEmpty());
+        System.out.println(obj.size());
+
+        obj.remove("Naresh");
+        // obj.add(null); // Not allowed in TreeSet
+        System.out.println(obj);
+
+        obj.clear();
+        System.out.println(obj.isEmpty());
+    }
+}
+
+// class Main {
+//     public static void main(String[] args) {
+//         TreeSet<String> obj = new TreeSet<>();
+
+//         obj.add("Lasya");
+//         obj.add("Chaithanya");
+//         obj.add("Sravanthi");
+//         obj.add("Naresh");
+//         obj.add("Lasya");
+
+//         System.out.println(obj);
+//         System.out.println(obj.ceiling("Nikhil"));
+//         System.out.println(obj.floor("Nikhil"));
+//     }
+// }
+// 
+
+// class Main {
+//     public static void main(String[] args) {
+//         Stack<String> obj = new Stack<>();
+//         obj.push("Lasya");
+//         obj.push("Chaithanya");
+//         obj.push("Sravanthi");
+//         obj.push("Naresh");
+//         obj.push("Lasya");
+//         System.out.println(obj);
+//         System.out.println(obj.search("Nikhil"));
+//     }
+// }
+// 
+
+// class Main {
+//     public static void main(String[] args) {                                                                                                     

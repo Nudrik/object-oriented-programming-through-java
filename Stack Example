@@ -1,0 +1,21 @@
+import java.util.Stack;
+
+public class StackExample {
+    public static void main(String[] args) {
+        Stack<String> obj = new Stack<>();
+
+        obj.push("Chaithanya");
+        obj.push("Ram Kumar");
+        obj.push("Veera Chary");
+        obj.push("Vinay");
+
+        System.out.println(obj);
+        System.out.println(obj.pop());
+        System.out.println(obj.pop());
+        System.out.println(obj.peek());
+        System.out.println(obj.empty());
+        System.out.println(obj.search("Ram Kumar"));
+        System.out.println(obj.indexOf("Ram Kumar"));
+    }
+}
+  

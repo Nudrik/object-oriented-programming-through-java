@@ -1,0 +1,21 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ExceptionExample {
+    public static void main(String[] args) {
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter a: ");
+            int a = sc.nextInt();
+            System.out.print("Enter b: ");
+            int b = sc.nextInt();
+
+            int c = a / b;
+            System.out.println("Result: " + c);
+        } catch (ArithmeticException e) {
+            System.out.println("Hello Rajesh, don't enter b value as zero.");
+        } catch (InputMismatchException e) {
+            System.out.println("Hello Rajesh, please check your input.");
+        }
+    }
+}

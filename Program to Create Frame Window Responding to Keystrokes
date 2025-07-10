@@ -1,0 +1,39 @@
+import java.awt.*; 
+import java.awt.event.*; 
+import javax.swing.*; 
+
+class KeyEventDemo extends JFrame implements KeyListener {
+    JLabel l1;
+
+    public KeyEventDemo() {
+        l1 = new JLabel("Press any key");
+        setLayout(new GridBagLayout());
+
+        l1.setForeground(Color.BLUE);
+        l1.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        add(l1);
+
+        setSize(400, 400);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addKeyListener(this);
+    }
+
+    public void keyTyped(KeyEvent e) {
+        l1.setText("Key Typed: " + e.getKeyChar());
+    }
+
+    public void keyPressed(KeyEvent e) {
+        l1.setText("Key Pressed: " + e.getKeyChar());
+    }
+
+    public void keyReleased(KeyEvent e) {
+        l1.setText("Key Released: " + e.getKeyChar());
+    }
+}
+
+public class KeyBoardEvents {
+    public static void main(String[] args) {
+        new KeyEventDemo();
+    }
+}

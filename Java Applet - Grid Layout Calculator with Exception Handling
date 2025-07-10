@@ -1,0 +1,108 @@
+
+import java.awt.*;  
+import java.awt.event.*; 
+import javax.swing.*; 
+
+/* <applet code="Calculator" width=300 height=400></applet> */ 
+
+public class Calculator extends JApplet implements ActionListener {
+    String msg = "";
+    int v1, v2, result;
+    JTextField t1;
+    JButton b[] = new JButton[10];
+    JButton add, sub, mul, div, clear, mod, EQ;
+    char OP;
+
+    public void init() {
+        t1 = new JTextField(20);
+        setLayout(new GridLayout(6, 3));
+        
+        for (int i = 0; i < 10; i++) {
+            b[i] = new JButton("" + i);
+        }
+
+        add = new JButton("+");
+        sub = new JButton("-");
+        mul = new JButton("*");
+        div = new JButton("/");
+        mod = new JButton("%");
+        clear = new JButton("Clear");
+        EQ = new JButton("=");
+
+        // Add components to the applet
+        add(t1);
+        for (int i = 0; i < 10; i++) add(b[i]);
+        add(add);
+        add(sub);
+        add(mul);
+        add(div);
+        add(mod);
+        add(clear);
+        add(EQ);
+
+        // Register listeners
+        for (int i = 0; i < 10; i++) b[i].addActionListener(this);
+        add.addActionListener(this);
+        sub.addActionListener(this);
+        mul.addActionListener(this);
+        div.addActionListener(this);
+        mod.addActionListener(this);
+        clear.addActionListener(this);
+        EQ.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        String str = ae.getActionCommand();
+        char ch = str.charAt(0);
+
+        try {
+            if (Character.isDigit(ch)) {
+                t1.setText(t1.getText() + str);
+            } else {
+                switch (str) {
+                    case "+":
+                    case "-":
+                    case "*":
+                    case "/":
+                    case "%":
+                        v1 = Integer.parseInt(t1.getText());
+                        OP = ch;
+                        t1.setText("");
+                        break;
+
+                    case "=":
+                        v2 = Integer.parseInt(t1.getText());
+                        switch (OP) {
+                            case '+': result = v1 + v2; break;
+                            case '-': result = v1 - v2; break;
+                            case '*': result = v1 * v2; break;
+                            case '/': 
+                                if (v2 == 0) {
+                                    t1.setText("Cannot divide by zero");
+                                    return;
+                                }
+                                result = v1 / v2; 
+                                break;
+                            case '%':
+                                if (v2 == 0) {
+                                    t1.setText("Modulo by zero not allowed");
+                                    return;
+                                }
+                                result = v1 % v2; 
+                                break;
+                        }
+                        t1.setText("" + result);
+                        break;
+
+                    case "Clear":
+                        t1.setText("");
+                        break;
+                }
+            }
+        } catch (NumberFormatException e) {
+            t1.setText("Invalid input");
+        } catch (Exception e) {
+            t1.setText("Error: " + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,16 @@
+import java.io.*;
+
+public class RandRead {
+    public static void main(String[] args) throws IOException {
+        // Open the file in read-write mode
+        RandomAccessFile file = new RandomAccessFile("D:\\varun.txt", "rw");
+
+        // Move the file pointer to position 20
+        file.seek(20);
+
+        // Read a line from that position
+        System.out.println(file.readLine());
+
+        file.close();
+    }
+}

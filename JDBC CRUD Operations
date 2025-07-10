@@ -1,0 +1,110 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class StudentCRUD {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/test";
+    static final String USER = "root";
+    static final String PASS = "root";
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n--- Student CRUD Menu ---");
+            System.out.println("1. Create Table");
+            System.out.println("2. Insert Data");
+            System.out.println("3. View All Students");
+            System.out.println("4. Update Student Location");
+            System.out.println("5. Delete Student");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1: createTable(); break;
+                case 2: insertData(); break;
+                case 3: retrieveData(); break;
+                case 4: updateData(); break;
+                case 5: deleteData(); break;
+                case 6: System.out.println("Exiting..."); System.exit(0);
+                default: System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    // 1. Create Table
+    public static void createTable() throws Exception {
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement st = conn.createStatement();
+        String query = "CREATE TABLE IF NOT EXISTS student(name VARCHAR(50), age INT(3), location VARCHAR(50))";
+        st.executeUpdate(query);
+        System.out.println("Table 'student' created (or already exists).");
+        conn.close();
+    }
+
+    // 2. Insert Data
+    public static void insertData() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO student VALUES (?, ?, ?)");
+
+        System.out.print("Enter name: ");
+        ps.setString(1, sc.nextLine());
+        System.out.print("Enter age: ");
+        ps.setInt(2, sc.nextInt());
+        sc.nextLine(); // consume newline
+        System.out.print("Enter location: ");
+        ps.setString(3, sc.nextLine());
+
+        int i = ps.executeUpdate();
+        System.out.println((i > 0) ? "Record inserted successfully." : "Failed to insert.");
+        conn.close();
+    }
+
+    // 3. Retrieve Data
+    public static void retrieveData() throws Exception {
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM student");
+
+        System.out.println("\n--- Student Records ---");
+        while (rs.next()) {
+            System.out.println(rs.getString(1) + " | " + rs.getInt(2) + " | " + rs.getString(3));
+        }
+
+        conn.close();
+    }
+
+    // 4. Update Location
+    public static void updateData() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        System.out.print("Enter name to update location: ");
+        String name = sc.nextLine();
+        System.out.print("Enter new location: ");
+        String location = sc.nextLine();
+
+        PreparedStatement ps = conn.prepareStatement("UPDATE student SET location = ? WHERE name = ?");
+        ps.setString(1, location);
+        ps.setString(2, name);
+
+        int i = ps.executeUpdate();
+        System.out.println((i > 0) ? "Record updated successfully." : "Record not found.");
+        conn.close();
+    }
+
+    // 5. Delete Student
+    public static void deleteData() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        System.out.print("Enter name to delete: ");
+        String name = sc.nextLine();
+
+        PreparedStatement ps = conn.prepareStatement("DELETE FROM student WHERE name = ?");
+        ps.setString(1, name);
+
+        int i = ps.executeUpdate();
+        System.out.println((i > 0) ? "Record deleted successfully." : "Record not found.");
+        conn.close();
+    }
+}

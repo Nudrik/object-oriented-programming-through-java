@@ -1,0 +1,39 @@
+class BookMyShow implements Runnable {
+    int available = 2;
+    int wanted;
+
+    public BookMyShow(int wanted) {
+        this.wanted = wanted;
+    }
+
+    // Synchronized method to prevent thread interference
+    public synchronized void run() {
+        if (wanted <= available) {
+            System.out.println("Ticket booked for " + Thread.currentThread().getName());
+            available = available - wanted;
+
+            try {
+                Thread.sleep(1000); // Simulate processing delay
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Sorry, no tickets for " + Thread.currentThread().getName());
+        }
+    }
+}
+
+public class Week6Program {
+    public static void main(String[] args) {
+        BookMyShow obj = new BookMyShow(1);
+
+        Thread t1 = new Thread(obj, "Anand");
+        Thread t2 = new Thread(obj, "Nikhil");
+        Thread t3 = new Thread(obj, "Veera Chary");
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+

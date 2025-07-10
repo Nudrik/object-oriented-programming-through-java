@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        ArrayList<String> obj = new ArrayList<>();
+
+        obj.add("Nikhil");
+        obj.add("Bharath");
+        obj.add("Uday");
+        obj.add("Uday");
+
+        System.out.println(obj);
+        System.out.println(obj.get(1));
+
+        obj.add(0, "Umanth");
+        System.out.println(obj);
+        System.out.println(obj.contains("Sriram"));
+        System.out.println(obj.indexOf("Uday"));
+        System.out.println(obj.lastIndexOf("Uday"));
+        System.out.println(obj.isEmpty());
+
+        obj.remove("Uday");
+        System.out.println(obj);
+
+        System.out.println(obj.subList(0, 2));
+        System.out.println(obj.size());
+        System.out.println(obj.set(3, "Uday Danger"));
+        System.out.println(obj);
+
+        obj.clear();
+        System.out.println(obj.isEmpty());
+    }
+}
+

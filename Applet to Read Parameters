@@ -1,0 +1,15 @@
+import java.applet.Applet; 
+import java.awt.Color; 
+import java.awt.Graphics; 
+
+public class ReadingParametersApplet extends Applet {
+    public void paint(Graphics g) {
+        int x1 = Integer.parseInt(getParameter("x1")); 
+        int y1 = Integer.parseInt(getParameter("y1")); 
+        int x2 = Integer.parseInt(getParameter("x2")); 
+        int y2 = Integer.parseInt(getParameter("y2")); 
+
+        g.setColor(Color.CYAN); 
+        g.drawLine(x1, y1, x2, y2); // Draws a line using input values
+    }
+}

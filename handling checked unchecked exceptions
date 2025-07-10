@@ -1,0 +1,31 @@
+class NegativeRadiusException extends Exception {
+    public NegativeRadiusException(String message) {
+        super(message);
+    }
+}
+
+class Circle {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    public void getArea() {
+        try {
+            if (radius < 0) {
+                throw new NegativeRadiusException("Invalid Radius");
+            }
+            System.out.println("Area: " + (3.14 * radius * radius));
+        } catch (NegativeRadiusException e) {
+            System.out.println(e);
+        }
+    }
+}
+
+public class UserDefinedExceptions {
+    public static void main(String[] args) {
+        Circle obj = new Circle(-3.25);
+        obj.getArea();
+    }
+}

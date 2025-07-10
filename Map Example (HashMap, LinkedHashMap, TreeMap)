@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class MapExample {
+    public static void main(String[] args) {
+        // HashMap<String, Integer> obj = new HashMap<>();
+        // LinkedHashMap<String, Integer> obj = new LinkedHashMap<>();
+        TreeMap<String, Integer> obj = new TreeMap<>();
+
+        obj.put("Dhoni", 98);
+        obj.put("Varun", 50);
+        obj.put("Bharath", 85);
+        obj.put("Nikhil", 85);
+
+        // TreeMap doesn't allow null keys
+        // obj.put(null, 20);
+
+        System.out.println(obj);
+        System.out.println(obj.keySet());
+        System.out.println(obj.values());
+        System.out.println(obj.containsKey("Kohli"));
+        System.out.println(obj.containsValue(100));
+
+        if (obj instanceof TreeMap) {
+            System.out.println(((TreeMap<String, Integer>) obj).firstKey());
+        }
+
+        System.out.println(obj.replace("Dhoni", 98, 110));
+        System.out.println(obj);
+        System.out.println(obj.isEmpty());
+        System.out.println(obj.size());
+        System.out.println(obj.remove("Nikhil"));
+        System.out.println(obj);
+
+        obj.clear();
+        System.out.println(obj.isEmpty());
+    }
+}
